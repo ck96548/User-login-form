@@ -1,0 +1,28 @@
+GET /users?name=jonny HTTP/2
+Host: Localhost:3000
+Custom-Header: 
+
+####
+
+POST /users HTTP/2
+Host: Localhost:3000
+Content-Type: application/json
+Custom-Header: myHeaderValue
+
+{
+  "fullName": "ram Kuma",
+  "email": "chandan.kumar1@example.com",
+  "mobile": "9876533510",
+  "dateOfBirth": "1995-08-15T00:00:00.000Z",
+  "idNumber": "A123456789",
+  "password": "Secuyue@123",
+  "isEmailVerified": false,
+  "isMobileVerified": false,
+  "address": {
+    "line1": "123 Main St",
+    "line2": "Apt 4B",
+    "city": "Delhi",
+    "state": "Delhi",
+    "pincode": "110001"
+  }
+}

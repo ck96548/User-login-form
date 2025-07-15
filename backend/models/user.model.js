@@ -17,43 +17,42 @@ const userSchema = new Schema({
   mobile: {
     type: String,
     required: true,
-    unique: true
+
   },
   dateOfBirth: {
     type: Date,
-    required: true
   },
-  address: {
-    line1: String,
-    line2: String,
-    city: String,
-    state: String,
-    pincode: String
-  },
+  // address: {
+  //   line1: String,
+  //   line2: String,
+  //   city: String,
+  //   state: String,
+  //   pincode: String
+  // },
   idNumber: {
     type: String,
     required: true // Aadhaar or PAN
   },
-  password: {
-    type: String // Can be empty if using OTP-only auth
-  },
-  isEmailVerified: {
-    type: Boolean,
-    default: false
-  },
-  isMobileVerified: {
-    type: Boolean,
-    default: false
-  },
-  otp: {
-    code: String,
-    expiresAt: Date
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: Date
+  // password: {
+  //   type: String // Can be empty if using OTP-only auth
+  // },
+  // isEmailVerified: {
+  //   type: Boolean,
+  //   default: false
+  // },
+  // isMobileVerified: {
+  //   type: Boolean,
+  //   default: false
+  // },
+  // otp: {
+  //   code: String,
+  //   expiresAt: Date
+  // },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now
+  // },
+  // updatedAt: Date
 
 })
 

@@ -7,22 +7,8 @@ const createUser = async (body) => {
             email: body.email,
             mobile: body.mobile,
             dateOfBirth: body.dateOfBirth,
-            address: {
-                line1: body.address?.line1,
-                line2: body.address?.line2,
-                city: body.address?.city,
-                state: body.address?.state,
-                pincode: body.address?.pincode
-            },
-            idNumber: body.idNumber,
-            password: body.password,
-            isEmailVerified: body.isEmailVerified || false,
-            isMobileVerified: body.isMobileVerified || false,
-            otp: body.otp || { code: null, expiresAt: null },
-            createdAt: new Date(),
-            updatedAt: new Date()
+            idNumber: body.idNumber
         }
-
         const createdUser = await User.create(newUser);
         return createdUser;
     } catch (err) {
@@ -39,7 +25,51 @@ const returnAllusers = async () => {
         console.error("Error fetching users:", err);
     }
 }
+
+const deleteByid = async (userId) => {
+    try {
+        const user = await User.findOneAndDelete({ _id: userId });
+        if (!user) {
+            throw new Error("User not found");
+        }       
+        return user;
+    } catch (err) {     
+        console.error("Error deleting user:", err);
+        throw err; // Throw error to controller for proper handling
+    }
+}
+
+const returnUserByid = async (userId) => {
+    try {
+       const user = await User.findById(userId); // Pass only the ID
+        if (!user) {
+            throw new Error("User not found");
+        }
+        return user;
+    }catch (err) {
+        console.error("Error fetching user by ID:", err);
+        throw err; // Throw error to controller for proper handling
+    }
+}
+
+const updateUsers = async (userId, updateData) => {
+    try{
+        const user = await User.findByIdAndUpdate(userId, updateData, { new: true });
+        if (!user) {
+            throw new Error("User not found");
+        }
+        return user;
+
+    }catch (err) {
+        console.error("Error updating user:", err);
+        throw err; // Throw error to controller for proper handling
+    }
+}
+
 module.exports = {
     createUser,
-    returnAllusers
+    returnAllusers,
+    deleteByid,
+    returnUserByid,
+    updateUsers
 }
